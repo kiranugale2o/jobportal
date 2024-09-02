@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
 export async function POST(req) {
   await DatabaseConn();
   try {
-    let { email, password, appName = "HACKJACK" } = await req.json();
+    let { email, password, appName = "JobPortal" } = await req.json();
 
     if (email === "" || password === "") {
       return NextResponse.json({
@@ -34,12 +34,12 @@ export async function POST(req) {
       }
       return NextResponse.json({
         success: false,
-        message: "this email  already Used !",
+        message: "this Email Already Used !",
       });
     }
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    const expiration = Date.now() + 60000;
+    const expiration = Date.now() + 120000;
 
     email = email.trim();
     password = password.trim();
@@ -71,7 +71,7 @@ export async function POST(req) {
             <h1>
             <bold>
             ${otp}
-            </bold></h1> valid upto 1 minitues</b>
+            </bold></h1> valid upto 2 minitues</b>
             <b>To Protect Do not Share this code !</b>
             <footer>thank you</footer>
           </div> 
