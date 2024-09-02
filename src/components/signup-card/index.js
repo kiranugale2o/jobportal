@@ -11,8 +11,11 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { passwordChecker } from "@/utils";
 
 const initialSignUpData = {
   email: "",
@@ -20,22 +23,25 @@ const initialSignUpData = {
 };
 
 export default function SignUPCard() {
+  const [passwordMsg, setPasswordMsg] = useState("");
+  const [buttonDisabled, setButtonDis] = useState(true);
+  const [passwordMsgColor, setPasswordMsgColor] = useState("");
   const [currentSignUpData, setCurrentSignUpData] = useState(initialSignUpData);
-  console.log(currentSignUpData);
 
-  function handleButtonDisabled() {
+  useEffect(() => {
     if (
       currentSignUpData.email.trim() === "" ||
-      currentSignUpData.password.trim() === ""
+      currentSignUpData.password.trim() === "" ||
+      passwordMsgColor === "red-600"
     ) {
-      return true;
+      setButtonDis(true);
     } else {
-      return false;
+      setButtonDis(false);
     }
-  }
+  });
 
   const router = useRouter();
-
+  //signIn handle function call api
   async function handleSignUp() {
     fetch("/api/sign-up", {
       method: "POST",
@@ -43,15 +49,16 @@ export default function SignUPCard() {
     }).then((res) => {
       res.json().then((res) => {
         if (res.success) {
-          alert(res.message);
+          toast.success(`Otp Send on ${res.email}`);
           sessionStorage.setItem("email", res.email);
           router.push("/sign-up/verification-of-email");
         } else {
-          alert(res.message);
+          toast.error(res.message);
         }
       });
     });
   }
+
   return (
     <>
       <Card className="mt-10 w-[350px] mx-auto lg:mt-auto shadow flex flex-col lg:w-[400px] item-center">
@@ -67,6 +74,7 @@ export default function SignUPCard() {
           <form className="" action={handleSignUp}>
             <Label>Email address</Label>
             <Input
+              type="email"
               onChange={(e) => {
                 setCurrentSignUpData({
                   ...currentSignUpData,
@@ -82,12 +90,26 @@ export default function SignUPCard() {
                   ...currentSignUpData,
                   password: e.target.value,
                 });
+
+                let passwordMsg = passwordChecker(e);
+                setPasswordMsg(passwordMsg.message);
+                setButtonDis(!passwordMsg.status);
+                if (passwordMsg.status) {
+                  setPasswordMsgColor("green-600");
+                } else {
+                  setPasswordMsgColor("red-600");
+                }
               }}
             />
+            <div
+              className={`text-[12px] mx-auto mt-3 font-semibold text-${passwordMsgColor}`}
+            >
+              {passwordMsg}
+            </div>
             <br />
 
             <Button
-              disabled={handleButtonDisabled()}
+              disabled={buttonDisabled}
               type="submit"
               className=" p-0 w-full disabled:opacity-50"
               //   variant="secondary"
@@ -105,6 +127,7 @@ export default function SignUPCard() {
           </CardFooter>
         </CardContent>
       </Card>
+      <ToastContainer />
     </>
   );
 }
