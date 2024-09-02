@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
 export async function POST(req) {
   try {
     await DatabaseConn();
-    let { email, appName } = await req.json();
+    let { email, appName = "JobPortal" } = await req.json();
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const expiration = Date.now() + 60000;
