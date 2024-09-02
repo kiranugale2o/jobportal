@@ -12,6 +12,9 @@ import {
   CardDescription,
 } from "../ui/card";
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+import { Cookie } from "next/font/google";
+import Cookies from "js-cookie";
 
 export default function VerifyOtpCard() {
   const [currentOtp, setCurrentOtp] = useState([]);
@@ -20,14 +23,25 @@ export default function VerifyOtpCard() {
   const [email, setEmail] = useState("");
   const [incorrectOtpDis, setIncorrectOtp] = useState("none");
   const [expriyOtpDis, setExpriesOtp] = useState("none");
+  const [seconds, setSeconds] = useState(60); // Initialize countdown with 60 seconds
+  const [resendText, setResendText] = useState(true);
   useEffect(() => {
     if (typeof window !== "undefined") {
       // Access sessionStorage here
       const value = sessionStorage.getItem("email");
       setEmail(value);
     }
-  }, []);
-  console.log(currentOtp);
+
+    if (seconds === 0) {
+      setResendText(false);
+      return;
+    } // Stop the timer when it reaches 0
+    const intervalId = setInterval(() => {
+      setSeconds((prevSeconds) => prevSeconds - 1);
+    }, 1000); // Update every second
+
+    return () => clearInterval(intervalId); // Cleanup interval on component unmount
+  }, [seconds]);
 
   async function otpChecker() {
     let otp = "";
@@ -42,7 +56,6 @@ export default function VerifyOtpCard() {
       setWarningDis("block");
     } else {
       setWarningDis("none");
-      alert();
       const data = {
         email,
         otp,
@@ -54,6 +67,11 @@ export default function VerifyOtpCard() {
         res.json().then((res) => {
           if (res.success) {
             toast.success(res.message);
+            Cookies.set("jobportal_token", res.token);
+            setIncorrectOtp("none");
+            setExpriesOtp("none");
+            setWarningDis("none");
+            router.push("/");
           } else {
             if (res.status === 1) {
               setIncorrectOtp("block");
@@ -73,6 +91,25 @@ export default function VerifyOtpCard() {
       toast.warn("only one digit Enter in box");
     }
   }
+
+  //handle resend otp function
+  async function handleResendOtp() {
+    fetch("/api/resend-otp", {
+      method: "POST",
+      body: JSON.stringify({ email }),
+    }).then((res) =>
+      res.json().then((res) => {
+        if (res.success) {
+          setSeconds(60);
+          toast.success("Otp send !");
+        } else {
+          toast.error("otp not send please try again ! ");
+        }
+      })
+    );
+  }
+  // Determine if the button should be disabled
+  const isDisabled = seconds === 0;
   return (
     <>
       <Card className=" mt-10 w-[350px] mx-auto lg:mt-auto shadow flex flex-col lg:w-[400px] item-center">
@@ -92,7 +129,7 @@ export default function VerifyOtpCard() {
                 return (
                   <div key={i} className="flex justify-between">
                     <Input
-                      className="border rounded-lg text-[20px]"
+                      className="border rounded-lg text-[20px] "
                       onChange={(e) => {
                         checkDigit(e, i);
                       }}
@@ -120,13 +157,16 @@ export default function VerifyOtpCard() {
             >
               Enter Code .
             </div>
-
-            <Link
-              href="/"
-              className="text-[13px] font-bold  ml-14  hover:underline underline-offset-2 "
+            <Button
+              variant="outline"
+              size=""
+              type="button"
+              disabled={resendText}
+              onClick={handleResendOtp}
+              className="ml-10 border-none hover:border-none hover:bg-color-none  "
             >
-              Didn't receive a code ? Resend{Date.now()}
-            </Link>
+              Didn’t receive a code? Resend ({seconds})
+            </Button>
             <br />
             <Button className="mt-5 w-full" type="submit">
               Continue
