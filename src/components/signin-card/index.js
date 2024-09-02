@@ -12,6 +12,9 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Cookies from "js-cookie";
 
 const initialSignInData = {
   email: "",
@@ -31,6 +34,22 @@ export default function SignInCard() {
       return false;
     }
   }
+
+  async function handleSignIn() {
+    fetch("/api/sign-in", {
+      method: "POST",
+      body: JSON.stringify(currentSignInData),
+    }).then((res) =>
+      res.json().then((res) => {
+        if (res.success) {
+          Cookies.set("jobportal_token", res.token);
+          toast.success(res.message);
+        } else {
+          toast.error(res.message);
+        }
+      })
+    );
+  }
   return (
     <>
       <Card className="mt-10 w-[350px] mx-auto lg:mt-auto shadow flex flex-col lg:w-[400px] item-center">
@@ -43,7 +62,7 @@ export default function SignInCard() {
           </CardDescription>
         </CardHeader>
         <CardContent className=" gap-y-1.5 ">
-          <form className="">
+          <form className="" action={handleSignIn}>
             <Label>Email address</Label>
             <Input
               onChange={(e) => {
@@ -84,6 +103,7 @@ export default function SignInCard() {
           </CardFooter>
         </CardContent>
       </Card>
+      <ToastContainer />
     </>
   );
 }
