@@ -1,4 +1,5 @@
-"use client";
+//import { currentUser, fetchUser } from "@/actions";
+import { currentUser, fetchUser } from "@/actions";
 import {
   Sheet,
   SheetContent,
@@ -7,12 +8,15 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-
 import { MenuIcon } from "lucide-react";
-
 import Link from "next/link";
+import Userbutton from "../userButton";
 
-export default function Headers() {
+export default async function Headers() {
+  const user = await currentUser();
+
+  const ProfileUser = await fetchUser(user?.userId);
+
   const menuItems = [
     {
       label: "Home",
@@ -22,12 +26,12 @@ export default function Headers() {
     {
       label: "login",
       path: "/sign-in",
-      show: true,
+      show: !user,
     },
     {
       label: "register",
       path: "/sign-up",
-      show: true,
+      show: !user,
     },
     {
       label: "Job",
@@ -42,7 +46,7 @@ export default function Headers() {
     {
       label: "Activity",
       path: "/activity",
-      show: true,
+      show: ProfileUser?.role === "candidate",
     },
     {
       label: "Account",
@@ -54,7 +58,7 @@ export default function Headers() {
     <>
       <div>
         <div className="flex shadow justify-between item-center w-full  h-auto ">
-          <div className="text-start  text-3xl font-semibold p-5 uppercase ">
+          <div className="text-start  text-2xl font-semibold p-5 uppercase ">
             JobEra
           </div>
           <Sheet>
@@ -62,7 +66,7 @@ export default function Headers() {
               <MenuIcon className="font-2xl" />
             </SheetTrigger>
             <SheetContent>
-              <SheetTitle className="uppercase text-2xl semibold text-green-200">
+              <SheetTitle className="uppercase text-2xl semibold ">
                 JobEra
               </SheetTitle>
               <div className=" flex flex-col lg:hidden justify-start mt-6   ">
@@ -80,6 +84,12 @@ export default function Headers() {
                     </div>
                   );
                 })}
+              </div>
+              <div
+                className="mt-0 mr-10"
+                style={{ display: `${user ? "block" : "none"}` }}
+              >
+                <Userbutton user={user} ProfileUser={ProfileUser} />
               </div>
             </SheetContent>
           </Sheet>
@@ -99,7 +109,13 @@ export default function Headers() {
                 </>
               );
             })}
-            <div className="mt-0 mr-10">{/*user button */}</div>
+
+            <div
+              className="mt-0 mr-10 "
+              style={{ display: `${user ? "block" : "none"}` }}
+            >
+              <Userbutton user={user} ProfileUser={ProfileUser} />
+            </div>
           </div>
         </div>
       </div>

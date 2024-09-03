@@ -1,14 +1,15 @@
 import { currentUser } from "@/actions";
-import SignUPCard from "@/components/signup-card";
+import VerifyOtpCard from "@/components/verify-otp";
 import { redirect } from "next/navigation";
 
-export default async function SignUp() {
+export default async function forgetPasswordVerficitionOfEmail() {
   const user = await currentUser();
   if (user) redirect("/");
+
   return (
     <>
-      <div className="p-auto lg:p-20">
-        <SignUPCard />
+      <div className="lg:p-24">
+        <VerifyOtpCard />
       </div>
     </>
   );

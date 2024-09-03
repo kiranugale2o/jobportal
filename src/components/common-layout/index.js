@@ -1,8 +1,6 @@
-"use client";
+import Headers from "../Navbar";
 
-import Headers from "@/headre";
-
-export default function CommonLayout({ children }) {
+export default async function CommonLayout({ children }) {
   return (
     <>
       {/* headers section */}

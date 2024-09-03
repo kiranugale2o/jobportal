@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server.js";
 import User from "@/model/User.js";
-import DatabaseConn from "@/database/DatabaseCon.js";
+import DatabaseConn from "@/database";
 import bcrypt from "bcryptjs";
 import nodemailer from "nodemailer";
 
@@ -45,7 +45,6 @@ export async function POST(req) {
     password = password.trim();
     var salt = await bcrypt.genSalt(10);
     var hashPass = await bcrypt.hash(password, salt);
-    console.log(hashPass);
 
     //add user email and otp in database
     const user = await User({

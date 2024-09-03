@@ -1,6 +1,11 @@
+import { currentUser } from "@/actions";
 import VerifyOtpCard from "@/components/verify-otp";
+import { redirect } from "next/navigation";
 
-export default function VerficitionOfEmail() {
+export default async function VerficitionOfEmail() {
+  const user = await currentUser();
+  if (user) redirect("/");
+
   return (
     <>
       <div className="lg:p-24">

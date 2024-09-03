@@ -15,6 +15,8 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import VerifyOtpCard from "../verify-otp";
 
 const initialSignInData = {
   email: "",
@@ -35,6 +37,7 @@ export default function SignInCard() {
     }
   }
 
+  const router = useRouter();
   async function handleSignIn() {
     fetch("/api/sign-in", {
       method: "POST",
@@ -44,6 +47,28 @@ export default function SignInCard() {
         if (res.success) {
           Cookies.set("jobportal_token", res.token);
           toast.success(res.message);
+          router.refresh();
+        } else {
+          toast.error(res.message);
+        }
+      })
+    );
+  }
+
+  async function handleForgetPassword() {
+    sessionStorage.setItem("email", currentSignInData?.email);
+    const email = currentSignInData?.email;
+    if (email === "") {
+      toast.error("First Enter Your Email");
+      return;
+    }
+    fetch("/api/sign-in/forgetPassword", {
+      method: "POST",
+      body: JSON.stringify({ email }),
+    }).then((res) =>
+      res.json().then((res) => {
+        if (res.success) {
+          router.push("/sign-in/forgetPassword-email-verify");
         } else {
           toast.error(res.message);
         }
@@ -82,8 +107,18 @@ export default function SignInCard() {
                 });
               }}
             />
-            <br />
 
+            <Button
+              variant="outline"
+              type="button"
+              onClick={() => {
+                handleForgetPassword();
+              }}
+              className="text-[13px] text-start mt-1 text-red-500  border-none hover:border-none hover:text-red-500 hover:bg-color-white-300"
+            >
+              Forget Password ?
+            </Button>
+            <br />
             <Button
               disabled={handleButtonDisabled()}
               type="submit"

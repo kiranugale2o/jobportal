@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import DatabaseConn from "@/database/DatabaseCon";
+import DatabaseConn from "@/database";
 import User from "@/model/User";
 import { NextResponse } from "next/server";
 export async function POST(req) {

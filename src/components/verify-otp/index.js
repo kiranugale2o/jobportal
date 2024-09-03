@@ -15,8 +15,10 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Cookie } from "next/font/google";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 export default function VerifyOtpCard() {
+  const router = useRouter();
   const [currentOtp, setCurrentOtp] = useState([]);
   const random = [1, 2, 3, 4, 5, 6];
   const [warningDis, setWarningDis] = useState("none");

@@ -1,9 +1,7 @@
-import User from "@/model/User.js";
-
-import nodemailer from "nodemailer";
-import { NextResponse } from "next/server";
 import DatabaseConn from "@/database";
-
+import User from "@/model/User";
+import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 const transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
@@ -19,7 +17,6 @@ export async function POST(req) {
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const expiration = Date.now() + 60000;
-
     const user = await User.findOne({ email: email });
     if (user) {
       await User.updateOne(
@@ -29,7 +26,7 @@ export async function POST(req) {
     }
     await transporter.sendMail({
       to: email,
-      subject: "RESEND Your OTP Code",
+      subject: " Your OTP Code",
       html: `
            <div>
           <h1>${appName}</h1>
@@ -47,7 +44,7 @@ export async function POST(req) {
 
     return NextResponse.json({
       success: true,
-      message: "OTP RESEND",
+      message: "OTP Send !",
     });
   } catch (error) {
     console.log(error.message);
