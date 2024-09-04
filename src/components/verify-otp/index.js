@@ -17,7 +17,7 @@ import { Cookie } from "next/font/google";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
-export default function VerifyOtpCard() {
+export default function VerifyOtpCard({ otpVerificationType }) {
   const router = useRouter();
   const [currentOtp, setCurrentOtp] = useState([]);
   const random = [1, 2, 3, 4, 5, 6];
@@ -47,6 +47,7 @@ export default function VerifyOtpCard() {
 
   async function otpChecker() {
     let otp = "";
+    //Concat OTP
     currentOtp.map((d) => {
       if (d === "") {
         setWarningDis("block");
@@ -62,28 +63,47 @@ export default function VerifyOtpCard() {
         email,
         otp,
       };
-      fetch("/api/verification-otp", {
-        method: "POST",
-        body: JSON.stringify(data),
-      }).then((res) => {
-        res.json().then((res) => {
-          if (res.success) {
-            toast.success(res.message);
-            Cookies.set("jobportal_token", res.token);
-            setIncorrectOtp("none");
-            setExpriesOtp("none");
-            setWarningDis("none");
-            router.push("/");
-          } else {
-            if (res.status === 1) {
-              setIncorrectOtp("block");
+      if (otpVerificationType === "forget-password") {
+        fetch("/api/sign-in/forgetPassword/verification-otp", {
+          method: "POST",
+          body: JSON.stringify(data),
+        }).then((res) =>
+          res.json().then((res) => {
+            if (res.success) {
+              router.push("/sign-in/setNewPassword");
             } else {
-              setExpriesOtp("block");
+              console.log("server");
+
+              toast.error(res.message);
             }
-          }
+          })
+        );
+      } else {
+        fetch("/api/verification-otp", {
+          method: "POST",
+          body: JSON.stringify(data),
+        }).then((res) => {
+          res.json().then((res) => {
+            if (res.success) {
+              //this code for sign-up Email Verification
+              toast.success(res.message);
+              Cookies.set("jobportal_token", res.token);
+              setIncorrectOtp("none");
+              setExpriesOtp("none");
+              setWarningDis("none");
+              router.push("/");
+              sessionStorage.removeItem("email");
+            } else {
+              if (res.status === 1) {
+                setIncorrectOtp("block");
+              } else {
+                setExpriesOtp("block");
+              }
+            }
+          });
         });
-      });
-    }
+      }
+    } //else close
   }
 
   function checkDigit(e, i) {
@@ -103,6 +123,9 @@ export default function VerifyOtpCard() {
       res.json().then((res) => {
         if (res.success) {
           setSeconds(60);
+          setIncorrectOtp("none");
+          setExpriesOtp("none");
+          setWarningDis("none");
           toast.success("Otp send !");
         } else {
           toast.error("otp not send please try again ! ");

@@ -14,6 +14,20 @@ export async function POST(req) {
   try {
     await DatabaseConn();
     let { email, appName = "JobPortal" } = await req.json();
+    const userExits = await User.findOne({ email: email });
+    //if user is not found
+    if (!userExits) {
+      return NextResponse.json({
+        success: false,
+        message: "this email is not found !",
+      });
+    }
+    if (!userExits?.verifyUser) {
+      return NextResponse.json({
+        success: false,
+        message: "User exit but not verified",
+      });
+    }
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const expiration = Date.now() + 60000;
@@ -30,13 +44,13 @@ export async function POST(req) {
       html: `
            <div>
           <h1>${appName}</h1>
-            <h1 class="color:"red"">Verification code</h1>
+            <h1 class="color:"red"">Verification code For Reset Password !</h1>
              <br/>
             <p>Enter the following verification code when prompted:
             <h1>
             <bold>
             ${otp}
-            </bold></h1> valid upto 1 minitues</p>
+            </bold></h1> valid upto 2 minitues</p>
             <b>To Protect Do not Share this code !</b>
             <footer>thank you</footer>
           </div>`,

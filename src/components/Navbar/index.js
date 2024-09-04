@@ -36,12 +36,12 @@ export default async function Headers() {
     {
       label: "Job",
       path: "/jobs",
-      show: true,
+      show: ProfileUser,
     },
     {
       label: "Membership",
       path: "/membership",
-      show: true,
+      show: ProfileUser,
     },
     {
       label: "Activity",
@@ -51,7 +51,7 @@ export default async function Headers() {
     {
       label: "Account",
       path: "/account",
-      show: true,
+      show: ProfileUser,
     },
   ];
   return (
@@ -85,6 +85,7 @@ export default async function Headers() {
                   );
                 })}
               </div>
+
               <div
                 className="mt-0 mr-10"
                 style={{ display: `${user ? "block" : "none"}` }}
@@ -94,7 +95,7 @@ export default async function Headers() {
             </SheetContent>
           </Sheet>
 
-          <div className=" hidden lg:flex flex-row mt-6   grid gap-10 grid-cols-3">
+          <div className=" hidden lg:flex flex-row mt-6   grid gap-10 grid-cols-3 mr-5">
             {menuItems.map((d) => {
               return (
                 <>
@@ -111,7 +112,7 @@ export default async function Headers() {
             })}
 
             <div
-              className="mt-0 mr-10 "
+              className="mt-[-10px] mr-10 "
               style={{ display: `${user ? "block" : "none"}` }}
             >
               <Userbutton user={user} ProfileUser={ProfileUser} />

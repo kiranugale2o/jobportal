@@ -4,8 +4,9 @@ import { redirect } from "next/navigation";
 
 export default async function Home() {
   const user = await currentUser();
-  console.log(user);
+
   const ProfileUser = await fetchUser(user?.userId);
+  console.log(user);
 
   if (!user) {
     redirect("/sign-in");

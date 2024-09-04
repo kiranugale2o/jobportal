@@ -9,7 +9,7 @@ export default async function forgetPasswordVerficitionOfEmail() {
   return (
     <>
       <div className="lg:p-24">
-        <VerifyOtpCard />
+        <VerifyOtpCard otpVerificationType={"forget-password"} />
       </div>
     </>
   );

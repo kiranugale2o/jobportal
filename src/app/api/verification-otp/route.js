@@ -20,7 +20,7 @@ export async function POST(req) {
     const token = jwt.sign(
       { email, userId: user._id },
       process.env.TOKEN_SECRET_KEY,
-      { expiresIn: "24h" }
+      { expiresIn: "7d" }
     );
 
     // Check if OTP is correct and not expired

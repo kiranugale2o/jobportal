@@ -39,7 +39,7 @@ export async function POST(req) {
     }
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    const expiration = Date.now() + 120000;
+    const expiration = Date.now() + 300000;
 
     email = email.trim();
     password = password.trim();
@@ -70,7 +70,7 @@ export async function POST(req) {
             <h1>
             <bold>
             ${otp}
-            </bold></h1> valid upto 2 minitues</b>
+            </bold></h1> valid upto 5 minitues</b>
             <b>To Protect Do not Share this code !</b>
             <footer>thank you</footer>
           </div> 

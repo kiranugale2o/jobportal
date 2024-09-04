@@ -14,7 +14,6 @@ import { useRouter } from "next/navigation";
 export default async function Userbutton({ user, ProfileUser }) {
   const router = useRouter();
   function handleSignOut() {
-    alert();
     Cookies.remove("jobportal_token");
     router.push("/");
   }

@@ -47,7 +47,7 @@ export default function SignInCard() {
         if (res.success) {
           Cookies.set("jobportal_token", res.token);
           toast.success(res.message);
-          router.refresh();
+          router.push("/");
         } else {
           toast.error(res.message);
         }
@@ -55,9 +55,12 @@ export default function SignInCard() {
     );
   }
 
+  //forget Password Handler
   async function handleForgetPassword() {
     sessionStorage.setItem("email", currentSignInData?.email);
     const email = currentSignInData?.email;
+    //setEmail as Session Storage
+    sessionStorage.setItem("email", email);
     if (email === "") {
       toast.error("First Enter Your Email");
       return;
