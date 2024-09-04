@@ -18,7 +18,7 @@ export async function POST(req) {
     let { email, appName = "JobPortal" } = await req.json();
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    const expiration = Date.now() + 60000;
+    const expiration = Date.now() + 300000;
 
     const user = await User.findOne({ email: email });
     if (user) {
@@ -39,7 +39,7 @@ export async function POST(req) {
             <h1>
             <bold>
             ${otp}
-            </bold></h1> valid upto 1 minitues</p>
+            </bold></h1> valid upto 5 minitues</p>
             <b>To Protect Do not Share this code !</b>
             <footer>thank you</footer>
           </div>`,
