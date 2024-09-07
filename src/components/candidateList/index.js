@@ -31,7 +31,7 @@ export default function CandidateList({
   jobApplication,
 }) {
   const router = useRouter();
-  async function handleViewProfile(candidateId) {
+  function handleViewProfile(candidateId) {
     const url = `/api/getCandidateDetailsById?id=${encodeURIComponent(
       candidateId
     )}`;
@@ -78,6 +78,7 @@ export default function CandidateList({
       body: JSON.stringify({
         jobApplicantUpdated: jobApplicantUpdated,
         path: "/jobs",
+        jtype: getStatus,
       }),
     }).then((res) => {
       router.refresh();

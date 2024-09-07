@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
@@ -16,10 +17,16 @@ import { ChevronRight } from "lucide-react";
 import { Cookie } from "next/font/google";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "../ui/input-otp";
+import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
 export default function VerifyOtpCard({ otpVerificationType }) {
   const router = useRouter();
-  const [currentOtp, setCurrentOtp] = useState([]);
+  const [currentOtp, setCurrentOtp] = useState("");
   const random = [1, 2, 3, 4, 5, 6];
   const [warningDis, setWarningDis] = useState("none");
   const [email, setEmail] = useState("");
@@ -46,22 +53,13 @@ export default function VerifyOtpCard({ otpVerificationType }) {
   }, [seconds]);
 
   async function otpChecker() {
-    let otp = "";
-    //Concat OTP
-    currentOtp.map((d) => {
-      if (d === "") {
-        setWarningDis("block");
-      }
-      otp = otp + d;
-    });
-
-    if (currentOtp.length < 6 || otp === "") {
+    if (currentOtp.length === "") {
       setWarningDis("block");
     } else {
       setWarningDis("none");
       const data = {
         email,
-        otp,
+        otp: currentOtp,
       };
       if (otpVerificationType === "forget-password") {
         fetch("/api/sign-in/forgetPassword/verification-otp", {
@@ -70,10 +68,17 @@ export default function VerifyOtpCard({ otpVerificationType }) {
         }).then((res) =>
           res.json().then((res) => {
             if (res.success) {
+              setIncorrectOtp("none");
+              setExpriesOtp("none");
+              setWarningDis("none");
               router.push("/sign-in/setNewPassword");
             } else {
               console.log("server");
-
+              if (res.status === 1) {
+                setIncorrectOtp("block");
+              } else {
+                setExpriesOtp("block");
+              }
               toast.error(res.message);
             }
           })
@@ -104,14 +109,6 @@ export default function VerifyOtpCard({ otpVerificationType }) {
         });
       }
     } //else close
-  }
-
-  function checkDigit(e, i) {
-    if (e.target.value >= 0 && e.target.value < 10) {
-      currentOtp[i] = e.target.value;
-    } else {
-      toast.warn("only one digit Enter in box");
-    }
   }
 
   //handle resend otp function
@@ -149,19 +146,13 @@ export default function VerifyOtpCard({ otpVerificationType }) {
         </CardHeader>
         <CardContent className="justify-between">
           <form action={otpChecker} className="">
-            <div className="flex w-full gap-5 grid-col-gap-3">
-              {random.map((d, i) => {
-                return (
-                  <div key={i} className="flex justify-between">
-                    <Input
-                      className="border rounded-lg text-[20px] "
-                      onChange={(e) => {
-                        checkDigit(e, i);
-                      }}
-                    />
-                  </div>
-                );
-              })}
+            <div className="flex w-full gap-5 mx-auto grid-col-gap-3">
+              <Input
+                className="text-center"
+                onChange={(e) => {
+                  setCurrentOtp(e.target.value);
+                }}
+              />
             </div>
 
             <div

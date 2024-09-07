@@ -38,7 +38,7 @@ export default function SignInCard() {
   }
 
   const router = useRouter();
-  async function handleSignIn() {
+  function handleSignIn() {
     fetch("/api/sign-in", {
       method: "POST",
       body: JSON.stringify(currentSignInData),
@@ -47,7 +47,7 @@ export default function SignInCard() {
         if (res.success) {
           Cookies.set("jobportal_token", res.token);
           toast.success(res.message);
-          router.push("/");
+          router.refresh();
         } else {
           toast.error(res.message);
         }

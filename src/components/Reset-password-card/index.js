@@ -27,7 +27,7 @@ export default function ResetPasswordCard() {
       setEmail(value);
     }
   });
-  async function handleResetPassword() {
+  function handleResetPassword() {
     if (password === confirmPassword) {
       const data = {
         email,

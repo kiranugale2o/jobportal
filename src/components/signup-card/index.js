@@ -42,7 +42,7 @@ export default function SignUPCard() {
 
   const router = useRouter();
   //signIn handle function call api
-  async function handleSignUp() {
+  function handleSignUp() {
     fetch("/api/sign-up", {
       method: "POST",
       body: JSON.stringify(currentSignUpData),

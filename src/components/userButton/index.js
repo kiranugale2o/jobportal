@@ -11,7 +11,7 @@ import { Button } from "../ui/button";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
-export default async function Userbutton({ user, ProfileUser }) {
+export default function Userbutton({ user, ProfileUser }) {
   const router = useRouter();
   function handleSignOut() {
     Cookies.remove("jobportal_token");

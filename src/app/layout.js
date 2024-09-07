@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import CommonLayout from "@/components/common-layout";
-import { currentUser } from "@/actions";
+import { currentUser, fetchUser } from "@/actions";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,10 +11,15 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
+  const user = await currentUser();
+  const ProfileUser = await fetchUser(user?.userId);
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <CommonLayout>{children}</CommonLayout>
+        <CommonLayout user={user} ProfileUser={ProfileUser}>
+          {children}
+        </CommonLayout>
       </body>
     </html>
   );

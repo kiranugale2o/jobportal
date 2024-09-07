@@ -1,4 +1,5 @@
 //import { currentUser, fetchUser } from "@/actions";
+"use client";
 import { currentUser, fetchUser } from "@/actions";
 import {
   Sheet,
@@ -12,11 +13,7 @@ import { MenuIcon } from "lucide-react";
 import Link from "next/link";
 import Userbutton from "../userButton";
 
-export default async function Headers() {
-  const user = await currentUser();
-
-  const ProfileUser = await fetchUser(user?.userId);
-
+export default function Headers({ user, ProfileUser }) {
   const menuItems = [
     {
       label: "Home",
