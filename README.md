@@ -19,7 +19,7 @@ This project is a feature-rich **Job Portal** application built using **Next.js*
 - **Database**: MongoDB (or another preferred database)
 - **Authentication**: JWT (JSON Web Token) with session and cookie management
 - **Email Service**: Nodemailer (Gmail integration)
-- **AI Integration**: GPT API (OpenAI) for chatbot functionality
+- **AI Integration**: GPT API (Google Gemini) for chatbot functionality
 - **Styling**: Tailwind CSS
 
 ---
@@ -29,10 +29,10 @@ This project is a feature-rich **Job Portal** application built using **Next.js*
 ### Prerequisites
 - **Node.js** (v14 or higher)
 - **MongoDB** instance (local or remote)
-- **OpenAI API Key** (for AI integration)
+- **Google Gemini** (for AI integration)
 - **Gmail account** for email verification (or SMTP details)
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/your-username/job-portal.git
+git clone https://github.com/kiranugale2o/job-portal.git
 cd job-portal
