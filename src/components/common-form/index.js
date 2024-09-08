@@ -12,6 +12,8 @@ export default function CommonForm({
   buttonAction,
   handleFileChange,
 }) {
+  console.log("curr", currentData);
+
   return (
     <>
       <div className="flex flex-col w-full justify-between item-center ">
@@ -43,7 +45,7 @@ export default function CommonForm({
                       className="bg-white hover:bg-stone-50 p-auto text-1xl hover:drop-shadow-2xl hover:bg-white "
                       type={d.contentType}
                       disabled={d.disabled}
-                      value={currentData[d.label] || ""}
+                      value={currentData?.[d.label] || ""}
                       name={d.name}
                       onChange={(e) => {
                         setData({
