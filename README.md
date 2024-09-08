@@ -24,15 +24,5 @@ This project is a feature-rich **Job Portal** application built using **Next.js*
 
 ---
 
-## Installation
-
-### Prerequisites
-- **Node.js** (v14 or higher)
-- **MongoDB** instance (local or remote)
-- **Google Gemini** (for AI integration)
-- **Gmail account** for email verification (or SMTP details)
-
-### Clone the Repository
-```bash
-git clone https://github.com/kiranugale2o/job-portal.git
-cd job-portal
+## Live Link
+-["JobPortal"](https://jobportal-beta-indol.vercel.app/)
