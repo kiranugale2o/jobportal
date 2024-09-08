@@ -99,7 +99,7 @@ export default function Headers({ user, ProfileUser }) {
                   {d.show ? (
                     <Link
                       href={d.path}
-                      className="text-1.3xl font-semibold uppercase"
+                      className="text-1.3xl  hover:text-yellow-300 p-auto font-semibold uppercase"
                     >
                       {d.label}
                     </Link>

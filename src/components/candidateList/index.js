@@ -91,7 +91,7 @@ export default function CandidateList({
         {jobApplication && jobApplication.length > 0
           ? jobApplication.map((d) => {
               return (
-                <div className="bg-green-100 flex flex-row w-[300px] lg:w-[350px] h-[80px]  lg:ml-10 justify-between rounded-lg shadow-md ">
+                <div className=" flex flex-row w-[300px] lg:w-[350px] h-[80px]  lg:ml-10 justify-between rounded-lg shadow-md ">
                   <h1 className=" text-[20px] font-semibold mt-4 ml-4  ">
                     {d.name}
                   </h1>
@@ -107,11 +107,11 @@ export default function CandidateList({
           : null}
       </div>
       <Dialog
-        className="w-full bg-green-100"
+        className="w-full "
         open={showCurrentCandidateDataModel}
         onOpenChange={setCurrentCandidateDataModel}
       >
-        <DialogContent className="w-full bg-green-200">
+        <DialogContent className="w-full ">
           <DialogHeader>
             <DialogTitle>
               <div className="text-xl font-semibold">

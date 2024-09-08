@@ -108,9 +108,13 @@ export default function CandidateJobs({
                 {jobItem?.jobdescription}
                 <span className="ml-5">{jobItem?.joblocation}</span>
               </div>
-              <div className="flex w-[150px] ml-10 mt-5 pl-5 pt-2 rounded-lg text-white text-lg font-bold bg-black h-[40px]">
-                {jobItem.jobtype} time
-              </div>
+
+              <Button
+                variant="secondary"
+                className="w-[150px] mt-5 ml-5 text-[20px]"
+              >
+                {jobItem.jobtype}
+              </Button>
             </DrawerDescription>
 
             <div className="flex ml-10 mt-5 text-xl ">
@@ -118,11 +122,7 @@ export default function CandidateJobs({
             </div>
             <div className="flex w-2/4  ml-10 gap-4 h-[80px] mt-5 ">
               {jobItem?.skill.split(",").map((d) => {
-                return (
-                  <div className="w-[100px] h-[40px] rounded-lg p-2.5 text-white bg-black">
-                    {d}
-                  </div>
-                );
+                return <Button variant="secondary">{d}</Button>;
               })}
             </div>
           </DrawerContent>

@@ -12,7 +12,7 @@ import { Button } from "../ui/button";
 export default function CommonCard({ title, applicant, company }) {
   return (
     <>
-      <Card className="w-30  bg-green-100 ">
+      <Card className="w-30 shadow-md ">
         <CardHeader>
           <CardTitle>
             <svg

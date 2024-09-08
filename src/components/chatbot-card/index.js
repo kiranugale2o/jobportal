@@ -4,6 +4,8 @@ import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //import React, { useState } from 'react';
 
@@ -202,9 +204,7 @@ export default function ChatbotCard() {
   ]);
   const [userInput, setUserInput] = useState("");
   const [botMessage, setBotmessage] = useState({ sender: "bot", text: "" });
-  // useEffect(()=>{
 
-  // })
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -214,20 +214,14 @@ export default function ChatbotCard() {
     const userMessage = { sender: "user", text: userInput };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
 
-    // Simulate a chatbot response
-    console.log(userInput);
-
     fetch("/api/jobportal-chatbot", {
       method: "POST",
       body: JSON.stringify({ prompt: userInput }),
     }).then((res) =>
       res.json().then((res) => {
+        toast.success("wait !");
         const botMessages = { sender: "bot", text: res.message };
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          userMessage,
-          botMessages,
-        ]);
+        setMessages((prevMessages) => [...prevMessages, botMessages]);
       })
     );
 
@@ -236,8 +230,10 @@ export default function ChatbotCard() {
   };
 
   return (
-    <div className="w-full p-24">
-      <div className="chat-box">
+    <div className="w-full p-auto lg:p-20  mx-0">
+      <h1 className="text-3xl mt-5 font-semibold">Chatbot For Candidate</h1>
+      <hr />
+      <div className="h-[500px] lg:h-[400px] overflow-y-auto bg-white flex flex-col gap-2 p-10 lg:p-0">
         {messages.map((message, index) => (
           <div
             key={index}
@@ -249,15 +245,36 @@ export default function ChatbotCard() {
           </div>
         ))}
       </div>
-      <form onSubmit={handleSubmit} className="input-area">
-        <input
-          type="text"
+      <form
+        onSubmit={handleSubmit}
+        className="flex w-full lg:flex  lg:w-3/3 mx-auto fixed bottom-3 bg-white"
+      >
+        <Input
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
-          placeholder="Type a message..."
-        />
-        <button type="submit">Send</button>
+          className="  border-current lg:w-2/3 lg:p-5 "
+        ></Input>
+        <Button type="submit" className="border rounded ">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="44"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-square-arrow-up"
+          >
+            <rect width="18" height="18" x="3" y="3" rx="2" />
+            <path d="m16 12-4-4-4 4" />
+            <path d="M12 16V8" />
+          </svg>
+        </Button>
+        <p className="mt-4 hidden">Ask job Regarding Qestions</p>
       </form>
+      <ToastContainer />
     </div>
   );
 }
