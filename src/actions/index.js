@@ -97,3 +97,34 @@ export async function createFilterCategory() {
   const result = await Job.find({});
   return JSON.parse(JSON.stringify(result));
 }
+
+export async function UpdateProfile(data) {
+  const {
+    userId,
+    role,
+    isPrimiumUser,
+    memberShipStartDate,
+    memberShipEndDate,
+    email,
+    recruiter,
+    candidate,
+    _id,
+  } = data;
+
+  await ProfileUser.findByIdAndUpdate(
+    { _id },
+    {
+      userId,
+      role,
+      isPrimiumUser,
+      memberShipStartDate,
+      memberShipEndDate,
+      email,
+      recruiter,
+      candidate,
+    },
+    {
+      new: true,
+    }
+  );
+}
