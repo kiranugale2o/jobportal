@@ -10,18 +10,18 @@ export default async function Home() {
   const ProfileUser = await fetchUser(user?.userId);
   console.log(user);
 
-  if (!user) {
-    redirect("/sign-in");
-  } else {
-    if (user && !ProfileUser?._id) {
-      redirect("/onboard");
-    }
-  }
+  // if (!user) {
+  //   redirect("/sign-in");
+  // } else {
+  //   if (user && !ProfileUser?._id) {
+  //     redirect("/onboard");
+  //   }
+  // }
 
   return (
     <>
       <div className="w-full block lg:flex flex-col mx-auto justify-between">
-        <div className="block lg:flex  w-full p-10 bg-gray-200">
+        <div className="block lg:flex  w-full p-6 bg-gray-200">
           <div className="lg:p-24 lg:w-[600px] block gap-6">
             <div className="text-3xl lg:text-4xl font-semibold">
               Find Your Career .<br /> You Deserve it.
@@ -31,7 +31,7 @@ export default async function Home() {
               connect talented individuals with employers who are looking for
               their skills.
             </div>
-            <div className="flex item-center gap-8 mt-7">
+            <div className="flex lg:item-center lg:gap-8 mt-7">
               <ul>
                 <li className="flex">
                   <svg

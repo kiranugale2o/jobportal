@@ -17,6 +17,13 @@ export default async function Activity() {
   if (ProfileUser?.role !== "candidate") redirect("/");
   const jobList = await fetchAlljobs();
   const jobApplication = await fetchCandidateApplication(user?.userId);
+  if (!user) {
+    redirect("/sign-in");
+  } else {
+    if (user && !ProfileUser?._id) {
+      redirect("/onboard");
+    }
+  }
 
   return (
     <ActivityCard
