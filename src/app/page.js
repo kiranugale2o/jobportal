@@ -5,18 +5,18 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
-  const user = await currentUser();
+ // const user = await currentUser();
 
-  const ProfileUser = await fetchUser(user?.userId);
-  console.log(user);
+  //const ProfileUser = await //(user?.userId);
+  //console.log(user);
 
-  if (!user) {
-    redirect("/sign-in");
-  } else {
-    if (user && !ProfileUser?._id) {
-      redirect("/onboard");
-    }
-  }
+  // (!user) {
+    //redirect("/sign-in");
+  //} else {
+   // if ( && !ProfileUser?._id) {
+    //  redirect("/onboard");
+   // }
+  //}
 
   return (
     <>
