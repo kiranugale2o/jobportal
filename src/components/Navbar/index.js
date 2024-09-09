@@ -54,7 +54,7 @@ export default function Headers({ user, ProfileUser }) {
   return (
     <>
       <div>
-        <div className="flex shadow justify-between item-center w-full  h-auto ">
+        <div className="flex shadow justify-between item-center w-full bg-cyan-50  h-auto ">
           <div className="text-start  text-2xl font-semibold p-5 uppercase ">
             JobEra
           </div>

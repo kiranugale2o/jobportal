@@ -10,18 +10,18 @@ export default async function Home() {
   const ProfileUser = await user?.userId;
   console.log(user);
 
-  if (!user) {
-    redirect("/sign-in");
-  } else {
-    if (user && !ProfileUser?._id) {
-      redirect("/onboard");
-    }
-  }
+  // if (!user) {
+  //   redirect("/sign-in");
+  // } else {
+  //   if (user && !ProfileUser?._id) {
+  //     redirect("/onboard");
+  //   }
+  // }
 
   return (
     <>
-      <div className="w-full block lg:flex flex-col mx-auto justify-between">
-        <div className="block lg:flex  w-full p-10 bg-gray-200">
+      <div className="w-full block lg:flex flex-col mx-auto justify-between  bg-cyan-100">
+        <div className="block lg:flex  w-full p-6 ">
           <div className="lg:p-24 lg:w-[600px] block gap-6">
             <div className="text-3xl lg:text-4xl font-semibold">
               Find Your Career .<br /> You Deserve it.

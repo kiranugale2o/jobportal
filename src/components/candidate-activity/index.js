@@ -34,7 +34,7 @@ export default function ActivityCard({ jobList, jobApplication }) {
                 })}
               </TabsList>
             </div>
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col grid-col-gap-6 gap-6">
               <TabsContent value="Applied">
                 {jobList
                   .filter(
@@ -47,12 +47,14 @@ export default function ActivityCard({ jobList, jobApplication }) {
                           (filterItem) => item._id === filterItem.jobId
                         ) > -1
                   )
-                  .map((d) => {
+                  .map((d, i) => {
                     return (
-                      <CommonCard
-                        title={d?.jobtitle}
-                        company={d?.companyName}
-                      ></CommonCard>
+                      <div key={i} className="grid-col-gap-5 gap-5">
+                        <CommonCard
+                          title={d?.jobtitle}
+                          company={d?.companyName}
+                        ></CommonCard>
+                      </div>
                     );
                   })}
               </TabsContent>

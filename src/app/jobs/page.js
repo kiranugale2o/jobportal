@@ -15,8 +15,14 @@ export default async function JobPage({ searchParams }) {
   const user = await currentUser();
   const id = user?.userId;
   const ProfileUser = await fetchUser(user?.userId);
-  if (!user || !ProfileUser) redirect("/");
 
+  if (!user) {
+    redirect("/sign-in");
+  } else {
+    if (user && !ProfileUser?._id) {
+      redirect("/onboard");
+    }
+  }
   let jobList =
     ProfileUser?.role === "candidate"
       ? await fetchAlljobs(searchParams)

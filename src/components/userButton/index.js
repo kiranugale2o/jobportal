@@ -15,7 +15,7 @@ export default function Userbutton({ user, ProfileUser }) {
   const router = useRouter();
   function handleSignOut() {
     Cookies.remove("jobportal_token");
-    router.push("/");
+    router.refresh("/");
   }
   return (
     <>
