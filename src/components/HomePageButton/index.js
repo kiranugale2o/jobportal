@@ -1,9 +1,14 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
+import { useEffect } from "react";
 
 export default function HomePageButton({ user, ProfileUser }) {
   const router = useRouter();
+  useEffect(() => {
+    router.refresh("/");
+  }, []);
+
   return (
     <>
       <div className="flex mt-7 gap-4">
@@ -27,7 +32,7 @@ export default function HomePageButton({ user, ProfileUser }) {
         >
           {user
             ? ProfileUser?.role === "candidate"
-              ? "Your activity "
+              ? "Your activity"
               : "Post jobs"
             : "Post a Job"}
         </Button>

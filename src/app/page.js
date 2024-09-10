@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 export default async function Home() {
   const user = await currentUser();
 
-  const ProfileUser = await user?.userId;
+  const ProfileUser = await fetchUser(user?.userId);
   console.log(user);
 
   // if (!user) {
@@ -21,7 +21,7 @@ export default async function Home() {
   return (
     <>
       <div className="w-full block lg:flex flex-col mx-auto justify-between  bg-cyan-100">
-        <div className="block lg:flex  w-full p-6 ">
+        <div className="block lg:flex  w-full p-10 ">
           <div className="lg:p-24 lg:w-[600px] block gap-6">
             <div className="text-3xl lg:text-4xl font-semibold">
               Find Your Career .<br /> You Deserve it.
@@ -31,7 +31,7 @@ export default async function Home() {
               connect talented individuals with employers who are looking for
               their skills.
             </div>
-            <div className="flex lg:item-center lg:gap-8 mt-7">
+            <div className="flex ml:0  lg:item-center lg:gap-8 mt-7">
               <ul>
                 <li className="flex">
                   <svg
@@ -116,7 +116,7 @@ export default async function Home() {
             </div>
             <HomePageButton user={user} ProfileUser={ProfileUser} />
           </div>
-          <div className="flex hidden lg:block lg:w-[600px] ">
+          <div className="flex hidden p-10 mt-10 lg:block lg:w-[600px] ">
             <img
               src="banner.png"
               alt="banner"

@@ -35,11 +35,7 @@ export default function Headers({ user, ProfileUser }) {
       path: "/jobs",
       show: ProfileUser,
     },
-    {
-      label: "Membership",
-      path: "/membership",
-      show: ProfileUser,
-    },
+
     {
       label: "Activity",
       path: "/activity",
