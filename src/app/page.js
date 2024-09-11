@@ -1,8 +1,17 @@
 import { currentUser, fetchUser } from "@/actions";
 import HomePageButton from "@/components/HomePageButton";
 import { Button } from "@/components/ui/button";
+import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { jobCategories } from "@/utils";
 
 export default async function Home() {
   const user = await currentUser();
@@ -10,17 +19,15 @@ export default async function Home() {
   const ProfileUser = await fetchUser(user?.userId);
   console.log(user);
 
-  // if (!user) {
-  //   redirect("/sign-in");
-  // } else {
-  //   if (user && !ProfileUser?._id) {
-  //     redirect("/onboard");
-  //   }
-  // }
+  if (user && !ProfileUser?._id) {
+    redirect("/onboard");
+  }
+
+  const ar = [1, 1, 1, 1, 1, , 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
   return (
     <>
-      <div className="w-full block lg:flex flex-col mx-auto justify-between  bg-cyan-100">
+      <div className="w-full block lg:flex flex-col mx-auto justify-between  lg:bg-cyan-100">
         <div className="block lg:flex  w-full p-10 ">
           <div className="lg:p-24 lg:w-[600px] block gap-6">
             <div className="text-3xl lg:text-4xl font-semibold">
@@ -124,6 +131,143 @@ export default async function Home() {
             ></img>
           </div>
         </div>
+      </div>
+
+      <div className="block lg:flex justify-between item-center w-full lg:p-24">
+        <div className="flex w-full">
+          <img className="w-[450px]" src="banner2.jpg" alt="banner2" />
+        </div>
+        <div className="flex flex-col mt-5 p-5 w-full">
+          <h1 className="text-3xl font-semibold">
+            Millions of jobs.
+            <br /> Find the one that's right for you.
+          </h1>
+          <p className="mt-5 text-[16px] font-extralight">
+            Search all the open positions on the web. Get your own personalized
+            salary estimate. Read reviews on over 30000+ companies worldwide.
+          </p>
+          <ul className="grid-col-gap-5 gap-4 ">
+            <li className="mt-4 flex gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-circle-chevron-right"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="m10 8 4 4-4 4" />
+              </svg>
+              Digital Marketing Solutions for Tomorrow
+            </li>
+            <li className="mt-2 flex gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-circle-chevron-right"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="m10 8 4 4-4 4" />
+              </svg>
+              Our Talented & Experienced Marketing Agency
+            </li>
+            <li className="mt-2 flex gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-circle-chevron-right"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="m10 8 4 4-4 4" />
+              </svg>
+              Create your own skin to match your brand
+            </li>
+          </ul>
+          <Button className="mt-8 w-[150px]" size="icon">
+            Find Jobs
+            <ChevronRight className="h-4 w-8 " />
+          </Button>
+        </div>
+      </div>
+      <hr />
+      <div className="block lg:flex mt-5 flex-col text-center item-center lg:p-24">
+        <div className="text-3xl font-serif font-semibold">
+          Popular Job Listing
+        </div>
+        <div className="mt-5   text-[17px] font-extralight font-gray-100">
+          Search all the open positions on the web. Get your own personalized
+          salary estimate.
+          <br /> Read reviews on over 30000+ companies worldwide.
+        </div>
+        <div className="mx-0 p-0">
+          <Carousel
+            opts={{
+              align: "start",
+            }}
+            className=" block lg:flex p-10"
+          >
+            <CarouselContent className="ml-20 lg:ml-0">
+              {jobCategories.map((d) => {
+                return (
+                  <CarouselItem className=" md:basis-48 lg:basis-44 lg:ml-0">
+                    <div className=" p-10 w-[180px] lg:w-[170px] lg:h-[200px] shadow-lg border flex-col ">
+                      <div className="logo ml-5 ">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="44"
+                          height="44"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="lucide lucide-cpu"
+                        >
+                          <rect width="16" height="16" x="4" y="4" rx="2" />
+                          <rect width="6" height="6" x="9" y="9" rx="1" />
+                          <path d="M15 2v2" />
+                          <path d="M15 20v2" />
+                          <path d="M2 15h2" />
+                          <path d="M2 9h2" />
+                          <path d="M20 15h2" />
+                          <path d="M20 9h2" />
+                          <path d="M9 2v2" />
+                          <path d="M9 20v2" />
+                        </svg>
+                      </div>
+                      <div className="text-xl  semi-bold ">{d}</div>
+                    </div>
+                  </CarouselItem>
+                );
+              })}
+            </CarouselContent>
+            <div className="hidden lg:flex">
+              <CarouselPrevious />
+              <CarouselNext />
+            </div>
+          </Carousel>
+        </div>
+        <div className="w-full">faesdvc</div>
       </div>
     </>
   );

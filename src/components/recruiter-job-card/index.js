@@ -21,6 +21,7 @@ export default function RecruiterJobs({
     <div>
       <CommonCard
         title={jobItem?.jobtitle}
+        days={jobItem?.postDate}
         applicant={
           <Button
             disabled={

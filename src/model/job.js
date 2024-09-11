@@ -9,6 +9,7 @@ const jobSchema = new mongoose.Schema({
   experience: String,
   jobtype: String,
   recruiterId: String,
+  postDate: String,
   applicants: [
     {
       name: String,

@@ -11,6 +11,7 @@ export default function PostJob({ ProfileUser, user }) {
   const [currentJobData, setCurrentJobData] = useState({
     ...initialJobData,
     companyName: ProfileUser?.recruiter?.company,
+    postDate: new Date().toISOString().split("T")[0],
   });
 
   const [dialogbtn, setDialogbtn] = useState(false);

@@ -116,27 +116,33 @@ export default function JobListPage({
       <div className="pt-10 pb-24 justify-between">
         <div className="w-full">
           <div className="container grid grid-rows-3 gap-4 lg:grid-cols-3">
-            {ProfileUser?.role === "recruiter"
-              ? jobList && jobList.length > 0
-                ? jobList.map((jobItem) => (
-                    <RecruiterJobs
-                      key={jobItem.id}
-                      jobItem={jobItem}
-                      ProfileInfo={ProfileUser}
-                      jobApplication={jobApplication}
-                    />
-                  ))
-                : null
-              : jobList &&
-                jobList.length > 0 &&
+            {ProfileUser?.role === "recruiter" ? (
+              jobList && jobList.length > 0 ? (
                 jobList.map((jobItem) => (
-                  <CandidateJobs
+                  <RecruiterJobs
                     key={jobItem.id}
-                    jobItem={JSON.parse(JSON.stringify(jobItem))}
+                    jobItem={jobItem}
                     ProfileInfo={ProfileUser}
                     jobApplication={jobApplication}
                   />
-                ))}
+                ))
+              ) : (
+                <div className="text-3xl font-semibold mx-auto p-auto">
+                  No Job Posted !
+                </div>
+              )
+            ) : (
+              jobList &&
+              jobList.length > 0 &&
+              jobList.map((jobItem) => (
+                <CandidateJobs
+                  key={jobItem.id}
+                  jobItem={JSON.parse(JSON.stringify(jobItem))}
+                  ProfileInfo={ProfileUser}
+                  jobApplication={jobApplication}
+                />
+              ))
+            )}
           </div>
         </div>
       </div>

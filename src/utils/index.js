@@ -30,6 +30,7 @@ export const CandidateRequireField = [
   {
     label: "resume",
     name: "resume",
+
     placeholder: "Upload Resume",
     contentType: "file",
   },
@@ -213,6 +214,7 @@ export const initialJobData = {
   skill: "",
   experience: "",
   jobtype: "",
+  postDate: "",
 };
 
 export const filterMenuDataArray = [
@@ -258,3 +260,74 @@ export function formUrlQuery({ params, data }) {
 //toast
 
 //Nodemailer Transporter
+
+export const suggestQuestions = [
+  {
+    id: "que1",
+    question:
+      "What are the most important skills or attributes needed to succeed in this position?",
+  },
+  {
+    id: "que3",
+    question:
+      "Can you give me an example of how the company promotes work-life balance?",
+  },
+  {
+    id: "que4",
+    question: "What are the next steps in the hiring process?",
+  },
+  {
+    id: "que5",
+    question:
+      "Can you provide an example of a project or task that you’re particularly proud of? What was your role, and what was the outcome?",
+  },
+  {
+    id: "que6",
+    question:
+      "Tell me about a time when you faced a major challenge at work. How did you handle it?",
+  },
+  {
+    id: "que7",
+    question: "How do you handle working under pressure or tight deadlines?",
+  },
+  {
+    id: "que8",
+    question:
+      "Can you describe a time when you worked as part of a team to achieve a common goal? What role did you play?",
+  },
+  {
+    id: "que9",
+    question:
+      "Where do you see yourself in five years? How does this position fit into your career goals?",
+  },
+];
+
+//jobs Category
+export const jobCategories = [
+  "Engineering",
+  "Marketing",
+  "Sales",
+  "Finance",
+  "Human Resources",
+  "Customer Service",
+
+  "Software Development",
+  "Design",
+  "Healthcare",
+  "Education",
+  "Legal",
+  "Project Management",
+  "Operations",
+  "IT Support",
+  "Business Development",
+  "Data Science",
+  "Accounting",
+  "Construction",
+  "Consulting",
+  "Content Writing",
+  "Hospitality",
+  "Real Estate",
+  "Public Relations",
+  "Logistics",
+  "Manufacturing",
+];

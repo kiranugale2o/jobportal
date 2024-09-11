@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CommonCard from "../common-job-card";
 import { Button } from "../ui/button";
 import {
@@ -59,6 +59,8 @@ export default function CandidateJobs({
           <CommonCard
             title={jobItem?.jobtitle}
             company={jobItem?.companyName}
+            jobtype={jobItem?.jobtype}
+            days={jobItem?.postDate}
             applicant={
               <Button
                 onClick={() => {
