@@ -19,7 +19,7 @@ This project is a feature-rich **Job Portal** application built using **Next.js*
 - **Database**: MongoDB (or another preferred database)
 - **Authentication**: JWT (JSON Web Token) with session and cookie management
 - **Email Service**: Nodemailer (Gmail integration)
-- **AI Integration**: GPT API (Google Gemini) for chatbot functionality
+- **AI Integration**: Google Gemini for chatbot functionality
 - **Styling**: Tailwind CSS
 
 ---
