@@ -97,6 +97,7 @@ export default function ActivityCard({ jobList, jobApplication }) {
                     return (
                       <CommonCard
                         title={d?.jobtitle}
+ days={d?.postDate}
                         company={d?.companyName}
                       ></CommonCard>
                     );
