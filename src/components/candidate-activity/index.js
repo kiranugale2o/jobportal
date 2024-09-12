@@ -49,7 +49,7 @@ export default function ActivityCard({ jobList, jobApplication }) {
                   )
                   .map((d, i) => {
                     return (
-                      <div key={i} className="mt-4  grid-col-gap-5 gap-5">
+                      <div key={i} className="mt-4 p-5 lg:p-auto  grid-col-gap-5 gap-5">
                         <CommonCard
                           title={d?.jobtitle}
                           days={d?.postDate}
