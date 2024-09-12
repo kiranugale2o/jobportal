@@ -49,10 +49,11 @@ export default function ActivityCard({ jobList, jobApplication }) {
                   )
                   .map((d, i) => {
                     return (
-                      <div key={i} className="grid-col-gap-5 gap-5">
+                      <div key={i} className="mt-2 grid-col-gap-5 gap-5">
                         <CommonCard
                           title={d?.jobtitle}
-                          company={d?.companyName}
+                          days={d?.postDate}
+company={d?.companyName}
                         ></CommonCard>
                       </div>
                     );
@@ -75,7 +76,7 @@ export default function ActivityCard({ jobList, jobApplication }) {
                     return (
                       <CommonCard
                         title={d?.jobtitle}
-                        company={d?.companyName}
+                       days={d?.postDate} company={d?.companyName}
                       ></CommonCard>
                     );
                   })}
