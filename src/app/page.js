@@ -133,18 +133,19 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="block lg:flex justify-between item-center w-full lg:p-24">
+      <div className="block lg:flex justify-between item-center w-full lg:p-24 bg-gray-100">
         <div className="flex w-full">
           <img className="w-[450px]" src="banner2.jpg" alt="banner2" />
         </div>
         <div className="flex flex-col mt-5 p-5 w-full">
-          <h1 className="text-3xl font-semibold">
+          <h1 className="text-3xl lg:text-4xl font-semibold">
             Millions of jobs.
             <br /> Find the one that's right for you.
           </h1>
           <p className="mt-5 text-[16px] font-extralight">
-            Search all the open positions on the web. Get your own personalized
-            salary estimate. Read reviews on over 30000+ companies worldwide.
+            Our have to be burning with an idea, or a problem, or a wrong that
+            you want to right. If you're not passionate enough from the start,
+            you'll never stick it out.
           </p>
           <ul className="grid-col-gap-5 gap-4 ">
             <li className="mt-4 flex gap-2">
@@ -202,14 +203,43 @@ export default async function Home() {
               Create your own skin to match your brand
             </li>
           </ul>
+
           <Button className="mt-8 w-[150px]" size="icon">
             Find Jobs
             <ChevronRight className="h-4 w-8 " />
           </Button>
         </div>
       </div>
-      <hr />
-      <div className="block lg:flex mt-5 flex-col text-center item-center lg:p-24">
+
+      <div className="block lg:flex justify-between item-center w-full lg:p-24 bg-gray-100">
+        <div className="flex flex-col mt-5 p-5 w-full">
+          <h1 className="text-3xl lg:text-4xl font-semibold">
+            Make a difference with your online resume!
+          </h1>
+          <p className="mt-5 text-[16px] font-extralight">
+            Our have to be burning with an idea, or a problem, or a wrong that
+            you want to right. If you're not passionate enough from the start,
+            you'll never stick it out.
+          </p>
+
+          <div className="mt-4 flex lg:p-10 flex-col grid-col-gap-5 gap-5">
+            <div className="w-full lg:w-[400px] h-[80px] shadow border flex justify-evenly p-5">
+              <p className="text-4xl font-bold ">140k+</p>
+              <p className="text-[20px]  font-bold mt-2">Open positions</p>
+            </div>
+
+            <div className="w-full lg:w-[400px] h-[80px] shadow border flex justify-evenly p-5">
+              <p className="text-4xl font-bold ">140k+</p>
+              <p className="text-[20px]  font-bold mt-2">Open positions</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex w-full">
+          <img className="w-[450px]" src="banner3.jpg" alt="banner2" />
+        </div>
+      </div>
+
+      <div className="block lg:flex mt-5 flex-col text-center item-center lg:p-24 ">
         <div className="text-3xl font-serif font-semibold">
           Popular Job Listing
         </div>
@@ -225,7 +255,7 @@ export default async function Home() {
             }}
             className=" block lg:flex p-10"
           >
-            <CarouselContent className="ml-20 lg:ml-0">
+            <CarouselContent className="lg:ml-0">
               {jobCategories.map((d) => {
                 return (
                   <CarouselItem className=" md:basis-48 lg:basis-44 lg:ml-0">
@@ -267,7 +297,6 @@ export default async function Home() {
             </div>
           </Carousel>
         </div>
-        <div className="w-full">faesdvc</div>
       </div>
     </>
   );
