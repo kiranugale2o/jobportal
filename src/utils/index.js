@@ -214,7 +214,7 @@ export const initialJobData = {
   skill: "",
   experience: "",
   jobtype: "",
-  postDate: "",
+  postDate: new Date().toISOString().split("T")[0],
 };
 
 export const filterMenuDataArray = [

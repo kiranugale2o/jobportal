@@ -9,7 +9,10 @@ const jobSchema = new mongoose.Schema({
   experience: String,
   jobtype: String,
   recruiterId: String,
-  postDate: String,
+  postDate: {
+    type: String,
+    default: "2024-09-10",
+  },
   applicants: [
     {
       name: String,

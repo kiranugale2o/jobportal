@@ -54,7 +54,7 @@ export default function CommonCard({
               />
             </svg>
             {jobtype ? (
-              <div className="text-[15px] bg-gray-100 p-1 semibold text-cyan-300  ">
+              <div className="text-[15px] bg-gray-100 p-1 semibold text-black-100  ">
                 {jobtype}
               </div>
             ) : null}
@@ -63,7 +63,7 @@ export default function CommonCard({
           {title ? <CardTitle>{title}</CardTitle> : null}
           {company ? <CardDescription>{company}</CardDescription> : null}
           <CardDescription>
-            <b>{day} days</b>
+            <b>{day + 1} days</b>
           </CardDescription>
         </CardHeader>
         {applicant ? <CardFooter>{applicant}</CardFooter> : null}

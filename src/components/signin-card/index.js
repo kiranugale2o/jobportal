@@ -47,7 +47,7 @@ export default function SignInCard() {
         if (res.success) {
           Cookies.set("jobportal_token", res.token);
           toast.success(res.message);
-          router.refresh();
+          router.refresh("/");
         } else {
           toast.error(res.message);
         }

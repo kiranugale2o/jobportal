@@ -122,7 +122,7 @@ export default function CandidateJobs({
             <div className="flex ml-10 mt-5 text-xl ">
               Experience: {jobItem?.experience}
             </div>
-            <div className="flex w-2/4  ml-10 gap-4 h-[80px] mt-5 ">
+            <div className="flex flex-wrap  ml-10 gap-4 h-[80px] mt-5 ">
               {jobItem?.skill.split(",").map((d) => {
                 return <Button variant="secondary">{d}</Button>;
               })}

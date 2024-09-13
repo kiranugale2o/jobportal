@@ -15,7 +15,6 @@ import ProfileUser from "@/model/profile";
 export async function currentUser() {
   const headersList = headers();
   const cookieHeader = headersList.get("cookie") || "";
-
   // Parse cookies
   const cookies = parse(cookieHeader);
 
@@ -29,6 +28,7 @@ export async function currentUser() {
       (err, decoded) => {
         if (err) {
           // Token is invalid or expired
+          console.log(err);
           return null;
         }
         // Token is valid

@@ -50,6 +50,15 @@ export default function Userbutton({ user, ProfileUser }) {
             >
               Sign Out
             </Button>
+
+            <Button
+              className="w-full mt-5"
+              onClick={() => {
+                router.push("/account");
+              }}
+            >
+              Edit Profile
+            </Button>
           </div>
         </PopoverContent>
       </Popover>

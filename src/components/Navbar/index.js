@@ -12,8 +12,10 @@ import {
 import { MenuIcon } from "lucide-react";
 import Link from "next/link";
 import Userbutton from "../userButton";
+import { useRouter } from "next/navigation";
 
 export default function Headers({ user, ProfileUser }) {
+  const router = useRouter();
   const menuItems = [
     {
       label: "Home",
@@ -51,7 +53,12 @@ export default function Headers({ user, ProfileUser }) {
     <>
       <div>
         <div className="flex shadow justify-between item-center w-full bg-cyan-50  h-auto ">
-          <div className="text-start  text-2xl font-semibold p-5 uppercase ">
+          <div
+            className="text-start  text-2xl font-semibold p-5 uppercase "
+            onClick={() => {
+              router.push("/");
+            }}
+          >
             JobEra
           </div>
           <Sheet>
@@ -59,7 +66,12 @@ export default function Headers({ user, ProfileUser }) {
               <MenuIcon className="font-2xl" />
             </SheetTrigger>
             <SheetContent>
-              <SheetTitle className="uppercase text-2xl semibold ">
+              <SheetTitle
+                className="uppercase text-2xl semibold "
+                onClick={() => {
+                  router.push("/");
+                }}
+              >
                 JobEra
               </SheetTitle>
               <div className=" flex flex-col lg:hidden justify-start mt-6   ">

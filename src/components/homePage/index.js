@@ -22,7 +22,14 @@ export default function HomePage({ user, ProfileUser }) {
     <>
       <div className="w-full block lg:flex flex-col mx-auto justify-between lg:bg-cyan-100   ">
         <div className="block lg:flex  w-full p-10 ">
-          <div className="lg:p-24 lg:w-[600px] block gap-6">
+          <div className="flex lg:p-10 lg:mt-10 lg:block lg:w-[600px] ">
+            <img
+              src="banner.png"
+              alt="banner"
+              className="place-content-center"
+            ></img>
+          </div>
+          <div className="mt-5  lg:mt-0 lg:p-24 lg:w-[600px] block gap-6">
             <div className="text-3xl lg:text-4xl font-semibold">
               Find Your Career .<br /> You Deserve it.
             </div>
@@ -116,13 +123,7 @@ export default function HomePage({ user, ProfileUser }) {
             </div>
             <HomePageButton user={user} ProfileUser={ProfileUser} />
           </div>
-          <div className="flex hidden p-10 mt-10 lg:block lg:w-[600px] ">
-            <img
-              src="banner.png"
-              alt="banner"
-              className="place-content-center"
-            ></img>
-          </div>
+          {}
         </div>
       </div>
 
