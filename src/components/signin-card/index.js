@@ -103,6 +103,7 @@ export default function SignInCard() {
             <br />
             <Label>Password</Label>
             <Input
+                type="password"
               onChange={(e) => {
                 setCurrentSignInData({
                   ...currentSignInData,
