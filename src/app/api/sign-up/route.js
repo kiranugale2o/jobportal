@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server.js";
+import  { NextResponse } from "next/server.js";
 import User from "@/model/User.js";
 import DatabaseConn from "@/database";
 import bcrypt from "bcryptjs";
@@ -58,7 +58,7 @@ export async function POST(req) {
 
     if (user) {
       // Send OTP email
-      transporter.sendMail({
+     await transporter.sendMail({
         to: email,
         subject: "Email Verification Code ",
         html: `
