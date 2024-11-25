@@ -8,7 +8,7 @@ This project is a feature-rich **Job Portal** application built using **Next.js*
 - **User Authentication**: Secure sign-up, login, and logout using JWT and session management.
 - **Email Verification**: Ensures user identity by sending OTP-based email verification upon registration.
 - **Job Posting & Application**: Job seekers can apply to jobs, and recruiters can post job listings.
-- **Role-based Access**: Features different access levels for recruiters and candidates.
+- **Role-based Access Control**: Features different access levels for recruiters and candidates.
 - **Responsive UI**: The portal is mobile-friendly and accessible.
 
 ---
