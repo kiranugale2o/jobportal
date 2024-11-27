@@ -32,4 +32,4 @@ This project is a feature-rich **Job Portal** application built using **Next.js*
 -Password:recruiters123
 -Candidate page access :-
 -Email: prakashugale6@gmail.com
--Password : candidate123
+-Password : Kiran@2226012
