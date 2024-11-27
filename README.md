@@ -26,3 +26,10 @@ This project is a feature-rich **Job Portal** application built using **Next.js*
 
 ## Live Link
 -["JobPortal"](https://jobportal-beta-indol.vercel.app/)
+## Just Try 
+-recruiters page access :-
+-Email: hackjacktech2o@gmail.com
+-Password:recruiters123
+-Candidate page access :-
+-Email: prakashugale6@gmail.com
+-Password : candidate123
